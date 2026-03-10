@@ -25,7 +25,7 @@ if st.button("Generate Card"):
     font_text = ImageFont.truetype("GreatVibes-Regular.ttf",38)
 
     # Border
-    draw.rectangle((10,10,1090,640), outline="#D4AF37", width=8)
+    draw.rectangle((10,10,1200,900), outline="#D4AF37", width=8)
 
     # Couple image
     couple = Image.open(couple_img).convert("RGB")
@@ -38,11 +38,11 @@ if st.button("Generate Card"):
     wrapped_text = textwrap.fill(message, width=25)
     # Invitation text
     draw.multiline_text(
-        (450,100),
+        (500,120),
         message,
         fill="#3b1f1f",
         font=font_text,
-        spacing=10
+        spacing=12
     )
 
     st.image(img)
