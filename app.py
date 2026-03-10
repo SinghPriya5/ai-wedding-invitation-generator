@@ -42,8 +42,7 @@ if st.button("Generate Card"):
         message,
         fill="#3b1f1f",
         font=font_text,
-        spacing=10,
-        align="center"
+        spacing=10
     )
 
     st.image(img)
