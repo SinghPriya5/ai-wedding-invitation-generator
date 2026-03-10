@@ -1,48 +1,73 @@
-import textwrap
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFont
-from image_generator import generate_couple
-from message_agent import generate_message
+import textwrap
 
-st.title("AI Wedding Invitation Generator")
+st.title("💍 AI Wedding Invitation Generator")
 
-details = st.text_input("Enter wedding details")
+# User Inputs
+bride = st.text_input("Bride Name")
+groom = st.text_input("Groom Name")
+venue = st.text_input("Venue")
+
+haldi = st.text_input("Haldi Date")
+mehendi = st.text_input("Mehendi Date")
+sangeet = st.text_input("Sangeet Date")
+wedding = st.text_input("Wedding Date")
 
 if st.button("Generate Card"):
 
-    message = generate_message(details)
-    message = message.replace("–", "-")
+    # Card size
+    width = 1000
+    height = 650
 
-    couple_img = generate_couple()
-
-    # Background
-    img = Image.new("RGB", (1100,650), "#FFEFF2")
-
+    img = Image.new("RGB",(width,height),"#FFF0F5")
     draw = ImageDraw.Draw(img)
 
-    # Load font
-    font_title = ImageFont.truetype("GreatVibes-Regular.ttf",60)
-    font_text = ImageFont.truetype("GreatVibes-Regular.ttf",38)
+    # Load fonts
+    title_font = ImageFont.truetype("Italianno-Regular.ttf",70)
+    text_font = ImageFont.truetype("Italianno-Regular.ttf",38)
 
     # Border
-    draw.rectangle((10,10,1200,900), outline="#D4AF37", width=8)
+    draw.rectangle((10,10,width-10,height-10),outline="#D4AF37",width=6)
 
-    # Couple image
-    couple = Image.open(couple_img).convert("RGB")
-    couple = couple.resize((420,420))
+    # Couple Image
+    couple = Image.open("couple.png").convert("RGB")
+    couple = couple.resize((350,350))
+    img.paste(couple,(40,150))
 
-    img.paste(couple,(30,100))
+    # Invitation Message
+    message = f"""
+With the blessings of our parents
 
-    # Title
-    draw.text((520,70), "Wedding Invitation", fill="#883DE4", font=font_title)
-    wrapped_text = textwrap.fill(message, width=25)
-    # Invitation text
+{bride} & {groom}
+
+invite you to celebrate their wedding
+
+🌼 Haldi: {haldi}
+🌿 Mehendi: {mehendi}
+🎶 Sangeet: {sangeet}
+💍 Wedding: {wedding}
+
+📍 Venue: {venue}
+"""
+
+    # Wrap text so it doesn't go outside image
+    wrapped_text = textwrap.fill(message,width=28)
+
     draw.multiline_text(
-        (480,100),
-        message,
-        fill="#3b1f1f",
-        font=font_text,
-        spacing=12
+        (450,120),
+        wrapped_text,
+        fill="#4B1E1E",
+        font=text_font,
+        spacing=15
     )
 
     st.image(img)
+
+    # Download button
+    st.download_button(
+        label="Download Invitation Card",
+        data=img.tobytes(),
+        file_name="wedding_invitation.png",
+        mime="image/png"
+    )
