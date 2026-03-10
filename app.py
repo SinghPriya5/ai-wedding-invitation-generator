@@ -1,3 +1,4 @@
+import textwrap
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFont
 from image_generator import generate_couple
@@ -34,14 +35,15 @@ if st.button("Generate Card"):
 
     # Title
     draw.text((520,70), "Wedding Invitation", fill="#883DE4", font=font_title)
-
+    wrapped_text = textwrap.fill(message, width=25)
     # Invitation text
     draw.multiline_text(
         (500,140),
         message,
         fill="#3b1f1f",
         font=font_text,
-        spacing=10
+        spacing=10,
+        align="center"
     )
 
     st.image(img)
