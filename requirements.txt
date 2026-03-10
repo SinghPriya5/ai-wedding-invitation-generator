@@ -1,0 +1,5 @@
+streamlit
+pillow
+ollama
+textwrap3
+numpy
