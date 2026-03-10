@@ -1,4 +1,5 @@
 def generate_message(details):
+
     return f"""
 Wedding Invitation
 
