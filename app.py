@@ -31,14 +31,14 @@ if st.button("Generate Card"):
     couple = Image.open(couple_img).convert("RGB")
     couple = couple.resize((420,420))
 
-    img.paste(couple,(40,120))
+    img.paste(couple,(30,100))
 
     # Title
     draw.text((520,70), "Wedding Invitation", fill="#883DE4", font=font_title)
     wrapped_text = textwrap.fill(message, width=25)
     # Invitation text
     draw.multiline_text(
-        (450,140),
+        (450,100),
         message,
         fill="#3b1f1f",
         font=font_text,
