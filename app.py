@@ -38,7 +38,7 @@ if st.button("Generate Card"):
     wrapped_text = textwrap.fill(message, width=25)
     # Invitation text
     draw.multiline_text(
-        (500,140),
+        (450,140),
         message,
         fill="#3b1f1f",
         font=font_text,
