@@ -9,4 +9,6 @@ Haldi Ceremony
 Mehendi Ceremony
 Sangeet Night
 Wedding Celebration
+/n Together with their families, they invite you to celebrate their wedding.  
+/n Please join us and bless the couple with your love and good wishes.
 """
