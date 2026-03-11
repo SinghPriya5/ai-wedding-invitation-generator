@@ -24,8 +24,8 @@ if st.button("Generate Card"):
     draw = ImageDraw.Draw(img)
 
     # Load fonts
-    title_font = ImageFont.truetype("Italianno-Regular.ttf",70)
-    text_font = ImageFont.truetype("Italianno-Regular.ttf",38)
+    title_font = ImageFont.truetype("GreatVibes-Regular.ttf",70)
+    text_font = ImageFont.truetype("GreatVibes-Regular.ttf",38)
 
     # Border
     draw.rectangle((10,10,width-10,height-10),outline="#D4AF37",width=6)
