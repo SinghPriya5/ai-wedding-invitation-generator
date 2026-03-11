@@ -49,18 +49,18 @@ if st.button("Generate Card"):
     Sangeet: {sangeet}
     Wedding: {wedding}
 
-📍 Venue: {venue}
-"""
+    Venue: {venue}
+    """
 
     # Wrap text so it doesn't go outside image
-    wrapped_text = textwrap.fill(message,width=28)
+    wrapped_text = textwrap.fill(message,width=26)
 
     draw.multiline_text(
         (450,140),
         wrapped_text,
         fill="#4B1E1E",
         font=text_font,
-        spacing=18
+        spacing=20
     )
 
     st.image(img)
