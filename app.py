@@ -1,10 +1,9 @@
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFont
-import textwrap
 
 st.title("💍 AI Wedding Invitation Generator")
 
-# User Inputs
+# Inputs
 bride = st.text_input("Bride Name")
 groom = st.text_input("Groom Name")
 venue = st.text_input("Venue")
@@ -16,56 +15,53 @@ wedding = st.text_input("Wedding Date")
 
 if st.button("Generate Card"):
 
-    # Card size
     width = 1000
     height = 650
 
     img = Image.new("RGB",(width,height),"#FFF0F5")
     draw = ImageDraw.Draw(img)
 
-    # Load fonts
+    # Fonts
     title_font = ImageFont.truetype("GreatVibes-Regular.ttf",70)
-    text_font = ImageFont.truetype("GreatVibes-Regular.ttf",38)
+    heading_font = ImageFont.truetype("GreatVibes-Regular.ttf",45)
+    text_font = ImageFont.truetype("GreatVibes-Regular.ttf",32)
 
     # Border
     draw.rectangle((10,10,width-10,height-10),outline="#D4AF37",width=6)
 
-    # Couple Image
+    # Heading
+    draw.text((420,40),"Wedding Invitation",fill="#8B0000",font=title_font)
+
+    # Couple image
     couple = Image.open("couple.png").convert("RGB")
-    couple = couple.resize((350,350))
-    img.paste(couple,(40,150))
+    couple = couple.resize((330,330))
+    img.paste(couple,(60,180))
 
-    # Invitation Message
-    message = f"""
-    With the blessings of our parents
+    # Blessing text
+    blessing = "With the blessings of our parents"
 
-    {bride} & {groom}
+    draw.text((430,140),blessing,fill="#4B1E1E",font=text_font)
 
-    invite you to celebrate 
-    their wedding
+    # Couple names
+    names = f"{bride}  &  {groom}"
 
-    Haldi: {haldi}
-    Mehendi: {mehendi}
-    Sangeet: {sangeet}
-    Wedding: {wedding}
+    draw.text((430,180),names,fill="#8B0000",font=heading_font)
 
-    Venue: {venue}
-    """
+    invite = "invite you to celebrate their wedding"
 
-    # Wrap text so it doesn't go outside image
-    wrapped_text = textwrap.fill(message,width=26)
+    draw.text((430,230),invite,fill="#4B1E1E",font=text_font)
 
-    draw.multiline_text(
-        (450,140),
-        wrapped_text,
-        fill="#4B1E1E",
-        font=text_font,
-        spacing=20
-    )
+    # Event details
+    draw.text((430,290),f"Haldi     : {haldi}",fill="#4B1E1E",font=text_font)
+    draw.text((430,330),f"Mehendi   : {mehendi}",fill="#4B1E1E",font=text_font)
+    draw.text((430,370),f"Sangeet   : {sangeet}",fill="#4B1E1E",font=text_font)
+    draw.text((430,410),f"Wedding   : {wedding}",fill="#4B1E1E",font=text_font)
+
+    # Venue
+    draw.text((430,470),f"Venue : {venue}",fill="#8B0000",font=text_font)
 
     st.image(img)
 
-    # Download button
     st.download_button(
         label="Download Invitation Card",
         data=img.tobytes(),
