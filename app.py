@@ -37,16 +37,17 @@ if st.button("Generate Card"):
 
     # Invitation Message
     message = f"""
-With the blessings of our parents
+    With the blessings of our parents
 
-{bride} & {groom}
+    {bride} & {groom}
 
-invite you to celebrate their wedding
+    invite you to celebrate 
+    their wedding
 
-🌼 Haldi: {haldi}
-🌿 Mehendi: {mehendi}
-🎶 Sangeet: {sangeet}
-💍 Wedding: {wedding}
+    Haldi: {haldi}
+    Mehendi: {mehendi}
+    Sangeet: {sangeet}
+    Wedding: {wedding}
 
 📍 Venue: {venue}
 """
@@ -55,11 +56,11 @@ invite you to celebrate their wedding
     wrapped_text = textwrap.fill(message,width=28)
 
     draw.multiline_text(
-        (450,120),
+        (450,140),
         wrapped_text,
         fill="#4B1E1E",
         font=text_font,
-        spacing=15
+        spacing=18
     )
 
     st.image(img)
